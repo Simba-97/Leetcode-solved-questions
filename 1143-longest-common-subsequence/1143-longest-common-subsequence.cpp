@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    int dp[1000][1000];
+    int dp[1001][1001];
     int lcs(string x, string y, int n, int m){
         for(int i = 0; i < n+1; i++){
             for(int j = 0; j < m+1; j++){
