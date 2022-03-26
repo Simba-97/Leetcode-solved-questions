@@ -15,12 +15,9 @@ public:
         return true;
     }
     int solve(string &s, int i, int j) {
-        if(i >= j) return 0;
+        if(i >= j || isPalindrome(s, i, j)) return 0;
         if(dp[i][j] != -1){
             return dp[i][j];
-        }
-        if(isPalindrome(s,i,j)) {
-            return 0;
         }
         int ans = INT_MAX;
         for(int k = i; k <= j-1; k++) {
