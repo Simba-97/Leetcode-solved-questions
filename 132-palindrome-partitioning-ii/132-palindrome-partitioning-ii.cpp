@@ -25,7 +25,20 @@ public:
         int ans = INT_MAX;
         for(int k = i; k <= j-1; k++) {
             if(isPalindrome(s, i, k)) {
-                int temp = 1 + solve(s, i, k) + solve(s, k+1, j);
+                int left, right;
+                if(dp[i][k] != -1){
+                    left = dp[i][k];
+                } else {
+                    left = solve(s, i, k);
+                    dp[i][k] = left;
+                }
+                if(dp[k+1][j] != -1){
+                    right = dp[k+1][j];
+                } else {
+                    right = solve(s, k+1, j);
+                    dp[k+1][j] = right;
+                }
+                int temp = 1 + left + right;
                 ans = min(temp, ans);
             }
         }
