@@ -10,7 +10,7 @@ public:
         int hi = (n * m) - 1;
         
         while(lo <= hi) {
-            int mid = (lo + (hi - lo)/2);
+            int mid = lo + (hi - lo)/2;
             
             if(matrix[mid/m][mid%m] == target){
                 return true;
