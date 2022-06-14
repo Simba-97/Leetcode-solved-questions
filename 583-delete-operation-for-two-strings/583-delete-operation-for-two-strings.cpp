@@ -20,15 +20,10 @@ public:
         }  
         return dp[n][m];
     }
-    int longestCommonSubsequence(string text1, string text2) {
-        memset(dp, -1, sizeof(dp));
-        int n = text1.size();
-        int m = text2.size();
-        
-        return lcs(text1, text2, n, m);
-    }
+    
     int minDistance(string word1, string word2) {
-        int lCS = longestCommonSubsequence(word1, word2);
+        memset(dp, -1, sizeof(dp));
+        int lCS = lcs(word1, word2, word1.size(), word2.size());
         int deletion = word1.size() - lCS;
         int insertion = word2.size() - lCS;
         
