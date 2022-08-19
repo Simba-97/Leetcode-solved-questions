@@ -10,23 +10,19 @@
  * };
  */
 class Solution {
-    pair<bool, int> solve(TreeNode* root){
-        if(root == NULL){
-            pair<bool, int> p = make_pair(true, 0);
-            return p;
-        }
-        
-        pair<bool, int> left = solve(root->left);
-        pair<bool, int> right = solve(root->right);
-        
-        pair<bool, int> ans;
-        ans.first = left.first && right.first && (abs(left.second - right.second) <= 1);
-        ans.second = max(left.second, right.second) + 1;
-        
-        return ans;
-    }
 public:
+    int depth(TreeNode* root) {
+        if(root == NULL) return 0;
+        
+        int lh = depth(root->left);
+        int rh = depth(root->right);
+        return 1 + max(lh, rh);
+    }
     bool isBalanced(TreeNode* root) {
-        return solve(root).first;
+        if(root == NULL) return true;
+        
+        if(abs(depth(root->left) - depth(root->right)) > 1) return false;
+        
+        return isBalanced(root->left) && isBalanced(root->right);
     }
 };
