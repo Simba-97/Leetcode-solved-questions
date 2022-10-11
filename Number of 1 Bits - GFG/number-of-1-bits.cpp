@@ -7,8 +7,12 @@ class Solution {
   public:
     int setBits(int N) {
         // Write Your Code here
-        bitset<64> b1(N);
-        return b1.count();
+        int count;
+        while(N) {
+            N = N & (N-1);
+            count++;
+        }
+        return count;
     }
 };
 
