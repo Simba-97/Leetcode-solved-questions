@@ -15,8 +15,12 @@ class Solution{
         
         // Your logic here
         int ans = a ^ b;
-        bitset<64> b1(ans);
-        return b1.count();
+        int count;
+        while(ans) {
+            ans = ans & (ans-1);
+            count++;
+        }
+        return count;
     }
 };
 
