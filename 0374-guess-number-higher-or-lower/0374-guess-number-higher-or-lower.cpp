@@ -10,10 +10,19 @@
 class Solution {
 public:
     int guessNumber(int n) {
-        int ans = guess(n);
-        if(ans == 0) return n;
-        else if(ans == -1) return guessNumber(n-1);
-        else if(ans == 1) return guessNumber(n+1);
-        return ans;
+        int low = 1;
+        int high = n;
+        while(low <= high) {
+            int mid = low + (high -  low)/2;
+            int val = guess(mid);
+            if(val == 0) {
+                return mid;
+            } else if(val == -1) {
+                high = mid - 1;
+            } else if(val == 1) {
+                low = mid + 1;
+            }
+        }
+        return -1;
     }
 };
