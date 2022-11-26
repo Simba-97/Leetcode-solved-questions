@@ -24,7 +24,7 @@ public:
                 }
                 
                 if(dp[i][j]) {
-                    len = g +1;
+                    len = g + 1;
                     ans = s.substr(i, len);
                 }
             }
