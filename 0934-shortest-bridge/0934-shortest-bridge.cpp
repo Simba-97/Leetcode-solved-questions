@@ -17,27 +17,27 @@ public:
             changeIslandType(new_i,new_j, row, col, grid);
         }   
     }
+    
     int shortestBridge(vector<vector<int>>& grid) {
-        int row=grid.size();
-        int col=grid[0].size();
+        int row = grid.size();
+        int col = grid[0].size();
         queue<pair<int,int>>q;
  
-        int change=0;
-        bool ok=false;
+        int change = 0;
+        bool ok = false;
 
-        for(int i=0;i<row;++i){
-            for(int j=0;j<col;++j){
+        for(int i = 0; i < row && !ok; ++i){
+            for(int j = 0;j < col && !ok; ++j){
                if(grid[i][j]){
-                   changeIslandType(i,j,row,col,grid);
-                   ok=true;
+                   changeIslandType(i, j, row, col, grid);
+                   ok = true;
                    break;
                }
             }
-            if(ok)break;
         }
 
-        for(int i=0;i<row;++i){
-            for(int j=0;j<col;++j){
+        for(int i = 0; i < row; ++i){
+            for(int j = 0;j < col; ++j){
                if(grid[i][j]==2){
                    q.push({i,j});       
                }
@@ -46,20 +46,20 @@ public:
 
         while(!q.empty()){
             ++change;
-         int sz=q.size();
+         int sz = q.size();
             while(sz--){
-               auto node=q.front();
+               auto node = q.front();
                q.pop();
-               for(int x=0;x<4;++x){
-                   int new_i=node.first+dx[x];
-                   int new_j=node.second+dy[x];
+               for(int x = 0; x < 4; ++x){
+                   int new_i = node.first + dx[x];
+                   int new_j = node.second + dy[x];
  
-                   if(isInBounds(new_i,new_j,row,col) ){
-                         if( grid[new_i][new_j]==0){
-                             grid[new_i][new_j]=2;
-                             q.push({new_i,new_j});
+                   if(isInBounds(new_i, new_j, row, col) ){
+                         if( grid[new_i][new_j] == 0){
+                             grid[new_i][new_j] = 2;
+                             q.push({new_i, new_j});
                          }
-                         if(grid[new_i][new_j]==1)return change-1; 
+                         if(grid[new_i][new_j] == 1)return change - 1; 
                    }  
                }     
             }
