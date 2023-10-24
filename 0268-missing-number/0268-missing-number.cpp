@@ -1,17 +1,18 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int maxNum = INT_MIN;
-        sort(nums.begin(), nums.end());
-        for(int i = 0 ; i < nums.size();i++) {
-            maxNum = max(maxNum, nums[i]);
+        int n = nums.size();
+        if(n == 0) return 0;
+        map<int, int> mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
         }
         
-        for(int i = 0; i < maxNum+1; i++) {
-            if(nums[i] != i) {
+        for(int i=0; i<=n; i++){
+            if(mp.find(i) == mp.end()){
                 return i;
             }
         }
-        return nums.size();
+        return -1;
     }
 };
