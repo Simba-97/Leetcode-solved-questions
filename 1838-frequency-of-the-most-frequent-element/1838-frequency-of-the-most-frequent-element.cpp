@@ -8,7 +8,7 @@ public:
         while(r < nums.size()){
             long curr = nums[r];
             total += curr;
-            while(curr * (r - l + 1) - total >  k){
+            while(curr * (r - l + 1) > total + k){
                 total -= nums[l];
                 l++;
             }
