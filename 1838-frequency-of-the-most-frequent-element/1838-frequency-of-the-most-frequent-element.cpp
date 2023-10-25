@@ -6,9 +6,9 @@ public:
         int res = 0; 
         long total = 0;
         while(r < nums.size()){
-            long curr = nums[r];
-            total += curr;
-            while(curr * (r - l + 1) > total + k){
+            long rightElement = nums[r];
+            total += rightElement;
+            while(rightElement * (r - l + 1) > total + k){
                 total -= nums[l];
                 l++;
             }
