@@ -1,24 +1,31 @@
 class Solution {
 public:
+    bool isSpecialChar(char c) {
+        // Check if the character is a special character
+        return !(c >= 'a' && c <= 'z') &&
+            !(c >= 'A' && c <= 'Z') &&
+            !(c >= '0' && c <= '9');
+    }
     bool isPalindrome(string s) {
-        int n = size(s);
-        
-        if(n == 1) return true;
-        
-        string newString;
-        for(int i = 0; i < n; i++){
-            if(iswalnum(s[i])){
+        string newString = "";
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] != ' ' && !isSpecialChar(s[i])){
                 newString += s[i];
             }
         }
-               
-        transform(newString.begin(), newString.end(), newString.begin(), ::tolower); 
-               
-        int i=0,j=size(newString)-1;
         
-        while(i < j) {
-            if(newString[i] != newString[j]) return false;
-            i++,j--;
+    
+        transform(newString.begin(), newString.end(), newString.begin(), ::tolower); 
+
+        
+        int left = 0;
+        int right = newString.size() - 1;
+        if(newString.size() == 0 || newString.size() == 1) return true;
+        
+        while(left <= right){
+            if(newString[left] != newString[right]) return false;
+            left++;
+            right--;
         }
         return true;
     }
