@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> ans;
-    set<int> st;
+    unordered_set<int> st;
     void solve(vector<int>& nums, vector<int>& temp){
         
         if(temp.size() == nums.size()){
