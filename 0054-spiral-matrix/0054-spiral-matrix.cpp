@@ -1,19 +1,58 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        vector<int> v;
-        int m = matrix.size(); // rows
-        if (m == 0) return v;
-        int n = matrix[0] .size(); // cols
-        int i(0), j(0), step(0), remain(m*n);
-        while (remain > 0) {
-            if (remain == 1) { v.push_back(matrix[m/2][n/2]); break; }
-            for (int k = 0; remain > 0 && k < n - 2 * step - 1; ++k, remain--) v.push_back(matrix[i][j++]); // right
-            for (int k = 0; remain > 0 && k < m - 2 * step - 1; ++k, remain--) v.push_back(matrix[i++][j]); // down
-            for (int k = 0; remain > 0 && k < n - 2 * step - 1; ++k, remain--) v.push_back(matrix[i][j--]); // left
-            for (int k = 0; remain > 0 && k < m - 2 * step - 1; ++k, remain--) v.push_back(matrix[i--][j]); // up
-            i++; j++; step++;
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        int dir = 0;
+
+        /*
+        dir = 0; left to right
+        dir = 1; top to bottom
+        dir = 2; right to left;
+        dir = 3; bottom to top
+        */
+
+        vector<int> result;
+
+        int top = 0;
+        int bottom = m-1;
+
+        int left = 0;
+        int right = n-1;
+
+        while(top <= bottom && left <= right){
+            if(dir == 0){
+                for(int i = left; i <= right; i++){
+                    result.push_back(matrix[top][i]);
+                }
+                top++;
+            }
+            if(dir == 1){
+                for(int i = top; i <= bottom; i++){
+                    result.push_back(matrix[i][right]);
+                }
+                right--;
+            }
+            if(dir == 2){
+                for(int i = right; i >= left; i--){
+                    result.push_back(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+            if(dir == 3){
+                for(int i = bottom; i >= top; i--){
+                    result.push_back(matrix[i][left]);
+                }
+                left++;
+            }
+
+            dir ++;
+            if(dir == 4){ 
+                dir = 0;
+            }
         }
-        return v;
+
+        return result;
     }
 };
