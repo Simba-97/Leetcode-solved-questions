@@ -1,15 +1,16 @@
 class Solution {
 public:
+    void reverse(vector<int>& nums, int start, int end) {
+        while (start < end) {
+            swap(nums[start], nums[end]);
+            start++;
+            end--;
+        }
+    }
     void rotate(vector<int>& nums, int k) {
-        // long long n = nums.size();
-        // vector<int> temp(n);
-        // for(int i = 1; i < n; i++) {
-        //     temp[i-k] = nums[i];
-        // }
-        // temp[n-k] = nums[0];
-        int a = k % nums.size();
-        reverse(nums.begin(),nums.end());
-        reverse(nums.begin(),nums.begin()+a);
-        reverse(nums.begin()+a,nums.end());
+        k = k % nums.size();
+        reverse(nums, 0, nums.size() - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.size() - 1);
     }
 };
