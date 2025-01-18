@@ -5,7 +5,7 @@ public:
         for(int i = 0; i < nums.size(); i++){
             int start = nums[i];
 
-            while(i + 1 < nums.size() && nums[i] + 1 == nums[i+1]){
+            while(i < nums.size() && nums[i] + 1 == nums[i+1]){
                 i++;
             }
 
